@@ -1,0 +1,11 @@
+<h1>Edit Position</h1>
+<section xmlns:th="http://www.w3.org/1999/xhtml">
+    <div>
+        <form th:action="@{/editPosition/{id}(id=${position.id})}" method="POST">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required/>
+            <button class="button" type="submit">Edit</button>
+            <button class="cancel button" type="button" onclick="location.href='/'">Cancel</button>
+        </form>
+    </div>
+</section>
