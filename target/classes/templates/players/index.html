@@ -8,20 +8,19 @@
             <a th:href="${'/viewPlayer/' + player.id}"><div class="col-md-auto">
                 <p th:text="${player.name}"></p>
                 <p>Team: </p>
-                <div th:each="team : ${teams}">
-                    <span th:if="${player.teamId == team.Id}">
+                <div th:each="team : ${teams}"><p th:if="${player.getTeamId() == team.getId()}">
                         <p th:text = "${team.name}"></p>
-                    </span>
+                </p>
                 </div>
                 <p>Position</p>
                 <div th:each="position : ${positions}">
-                    <span th:if="${player.positionId == position.Id}">
+                    <span th:if="${player.getPositionId() == position.getId()}">
                         <p th:text = "${position.name}"></p>
                     </span>
                 </div>
             </div></a>
-            <button th:onclick="'location.href = \'' + @{/edit/{id}(id=${player.id})} + '\''" class="edit">Edit Player</button>
-            <button th:onclick="'location.href = \'' + @{/delete/{id}(id=${player.id})} + '\''" class="delete">Delete Player</button>
+            <button th:onclick="'location.href = \'' + @{/editPlayer/{id}(id=${player.id})} + '\''" class="edit">Edit Player</button>
+            <button th:onclick="'location.href = \'' + @{/deletePlayer/{id}(id=${player.id})} + '\''" class="delete">Delete Player</button>
         </div>
     </div>
 </section>

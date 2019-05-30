@@ -10,6 +10,8 @@ import org.springframework.web.servlet.ModelAndView;
 import hello.repository.*;
 
 import java.io.IOException;
+import java.util.List;
+
 @Controller
 public class PlayerController {
     private final PlayerRepository playerRepository;
@@ -78,6 +80,32 @@ public class PlayerController {
         return new ModelAndView("base-layout")
                 .addObject("view", "players/editPlayer")
                 .addObject("player", this.playerRepository.findById(Math.toIntExact(id)).get());
+
+    }
+    @GetMapping("/viewPlayer/{id}")
+    public ModelAndView viewPlayer(@PathVariable Long id) {
+        return new ModelAndView("base-layout")
+                .addObject("view", "players/viewPlayer")
+                .addObject("player", this.playerRepository.findById(Math.toIntExact(id)).get())
+                .addObject("teams", this.teamRepository.findAll())
+                .addObject("positions", this.positionRepository.findAll());
+
+    }
+    @GetMapping("/viewTeam/{id}")
+    public ModelAndView viewTeam(@PathVariable Long id) {
+        return new ModelAndView("base-layout")
+                .addObject("view", "players/viewTeam")
+                .addObject("team", this.teamRepository.findById(Math.toIntExact(id)).get())
+                .addObject("players", this.playerRepository.findAll())
+                .addObject("positions", this.positionRepository.findAll());
+
+    }
+    @GetMapping("/viewPosition/{id}")
+    public ModelAndView viewPosition(@PathVariable Long id) {
+        return new ModelAndView("base-layout")
+                .addObject("view", "players/viewPosition")
+                .addObject("position", this.positionRepository.findById(Math.toIntExact(id)).get())
+                .addObject("players", this.playerRepository.findAll());
 
     }
     @PostMapping("/editPlayer/{id}")

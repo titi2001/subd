@@ -1,0 +1,9 @@
+
+<section xmlns:th="http://www.w3.org/1999/xhtml">
+    <h1 th:text="team.name"></h1>
+    <h1>Players: </h1>
+    <div th:each="player : ${players}"><p th:if="${player.getTeamId() == team.getId()}">
+        <p th:text = "${player.name}"></p>
+        </p>
+    </div>
+</section>

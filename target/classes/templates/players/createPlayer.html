@@ -4,10 +4,10 @@
         <form th:action="@{/createPlayer}" method="POST">
             <label for="name">Name</label>
             <input type="text" id="name" name="name" required/>
-            <label for="teamName">Team Name</label>
-            <input type="text" id = "teamName" name = "teamName"/>
-            <label for="positionName">Position Name</label>
-            <input type="text" id = "positionName" name = "positionName"/>
+            <label for="teamId">Team Name</label>
+            <input type="number" id = "teamId" name = "teamId"/>
+            <label for="positionId">Position Name</label>
+            <input type="number" id = "positionId" name = "positionId"/>
             <button class="button" type="submit">Create</button>
             <button class="button cancel" type="button" onclick="location.href='/'">Cancel</button>
         </form>
