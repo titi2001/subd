@@ -1,0 +1,11 @@
+<h1>Create Position</h1>
+<section>
+    <div xmlns:th="http://www.w3.org/1999/xhtml">
+        <form th:action="@{/createPosition}" method="POST">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required/>
+            <button class="button" type="submit">Create</button>
+            <button class="button cancel" type="button" onclick="location.href='/'">Cancel</button>
+        </form>
+    </div>
+</section>
