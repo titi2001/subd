@@ -7,8 +7,8 @@ import javax.persistence.*;
 public class Player {
     private int Id;
     private String name;
-    private int teamId;
-    private int positionId;
+    private int team_Id;
+    private int position_Id;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     public int getId() {
@@ -28,18 +28,18 @@ public class Player {
     }
 
     public int getTeamId() {
-        return teamId;
+        return team_Id;
     }
 
     public void setTeamId(int teamId) {
-        this.teamId = teamId;
+        this.team_Id = teamId;
     }
 
     public int getPositionId() {
-        return positionId;
+        return position_Id;
     }
 
     public void setPositionId(int positionId) {
-        this.positionId = positionId;
+        this.position_Id = positionId;
     }
 }

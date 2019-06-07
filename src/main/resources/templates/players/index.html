@@ -1,16 +1,23 @@
 
 <section xmlns:th="http://www.w3.org/1999/xhtml">
+    <form th:action="@{/}" method="POST">
+        <label for="search">Search</label>
+        <input type="text" id="search" name="search" required/>
+        <button class="button" type="submit">Search</button>
+    </form>
     <button class="add-new" th:onclick="'location.href = \'' + @{/createPlayer} + '\''">Create New Player</button>
     <button class="add-new" th:onclick="'location.href = \'' + @{/createTeam} + '\''">Create New Team</button>
-    <button class="add-new" th:onclick="'location.href = \'' + @{/createPosition + '\''">Create New Position</button>
+    <button class="add-new" th:onclick="'location.href = \'' + @{/createPosition}+ '\''">Create New Position</button>
     <div class="container" th:each="player : ${players}">
         <div class="row">
             <a th:href="${'/viewPlayer/' + player.id}"><div class="col-md-auto">
                 <p th:text="${player.name}"></p>
                 <p>Team: </p>
-                <div th:each="team : ${teams}"><p th:if="${player.getTeamId() == team.getId()}">
+                <div th:each="team : ${teams}">
+
+                    <span th:if="${player.getTeamId() == team.getId()}">
                         <p th:text = "${team.name}"></p>
-                </p>
+                    </span>
                 </div>
                 <p>Position</p>
                 <div th:each="position : ${positions}">
@@ -21,6 +28,24 @@
             </div></a>
             <button th:onclick="'location.href = \'' + @{/editPlayer/{id}(id=${player.id})} + '\''" class="edit">Edit Player</button>
             <button th:onclick="'location.href = \'' + @{/deletePlayer/{id}(id=${player.id})} + '\''" class="delete">Delete Player</button>
+        </div>
+    </div>
+    <div class="container" th:each="team : ${teams}">
+        <div class="row">
+            <a th:href="${'/viewTeam/' + team.id}"><div class="col-md-auto">
+                <p th:text="${team.name}"></p>
+            </div></a>
+            <button th:onclick="'location.href = \'' + @{/editTeam/{id}(id=${team.id})} + '\''" class="edit">Edit Team</button>
+            <button th:onclick="'location.href = \'' + @{/deleteTeam/{id}(id=${team.id})} + '\''" class="delete">Delete Team</button>
+        </div>
+    </div>
+    <div class="container" th:each="position : ${positions}">
+        <div class="row">
+            <a th:href="${'/viewPosition/' + position.id}"><div class="col-md-auto">
+                <p th:text="${position.name}"></p>
+            </div></a>
+            <button th:onclick="'location.href = \'' + @{/editPosition/{id}(id=${position.id})} + '\''" class="edit">Edit Position</button>
+            <button th:onclick="'location.href = \'' + @{/deletePosition/{id}(id=${position.id})} + '\''" class="delete">Delete Position</button>
         </div>
     </div>
 </section>

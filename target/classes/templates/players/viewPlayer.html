@@ -1,10 +1,10 @@
 
 <section xmlns:th="http://www.w3.org/1999/xhtml">
-    <h1 th:text="player.name"></h1>
+    <p th:text="${player.name}"></p>
     <h1>Team: </h1>
-    <div th:each="team : ${teams}"><p th:if="${player.getTeamId() == team.getId()}">
+    <div th:each="team : ${teams}"><span th:if="${player.getTeamId() == team.getId()}">
         <p th:text = "${team.name}"></p>
-        </p>
+        </span>
     </div>
     <h1> Position:</h1>
     <div th:each="position : ${positions}">

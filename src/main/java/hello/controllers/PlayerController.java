@@ -2,14 +2,17 @@ package hello.controllers;
 
 import hello.bookBindingModel.*;
 import hello.entity.*;
+import org.aspectj.apache.bcel.util.Play;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import hello.repository.*;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -30,7 +33,29 @@ public class PlayerController {
                 .addObject("teams", this.teamRepository.findAll())
                 .addObject("positions", this.positionRepository.findAll());
     }
-
+    @PostMapping("/")
+    public ModelAndView search(ModelAndView modelAndView, @RequestParam String search) {
+        List<Player> result = new ArrayList<>();
+        List<Player> original = this.playerRepository.findAll();
+        for(int i = 0; i < original.size(); i++){
+            if(original.get(i).getName().toLowerCase().contains(search.toLowerCase())){
+                result.add(original.get(i));
+            }
+        }
+        return new ModelAndView("base-layout")
+                .addObject("view", "players/index")
+                .addObject("players", result)
+                .addObject("teams", this.teamRepository.findAll())
+                .addObject("positions", this.positionRepository.findAll());
+    }
+    @GetMapping("/error")
+    public ModelAndView error(ModelAndView modelAndView) {
+        return new ModelAndView("base-layout")
+                .addObject("view", "players/index")
+                .addObject("players", this.playerRepository.findAll())
+                .addObject("teams", this.teamRepository.findAll())
+                .addObject("positions", this.positionRepository.findAll());
+    }
     @GetMapping("/createPlayer")
     public ModelAndView createPlayer(ModelAndView modelAndView) {
         return new ModelAndView("base-layout")
