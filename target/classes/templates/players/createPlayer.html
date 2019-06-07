@@ -1,13 +1,14 @@
 <h1>Create Player</h1>
 <section>
     <div xmlns:th="http://www.w3.org/1999/xhtml">
-        <form th:action="@{/createPlayer}" method="POST">
+        <form th:action="@{/createPlayer}" method="POST" enctype="multipart/form-data">
             <label for="name">Name</label>
             <input type="text" id="name" name="name" required/>
-            <label for="teamId">Team Id</label>
-            <input type="text" id = "teamId" name = "teamId"/>
-            <label for="positionId">Position Name</label>
-            <input type="text" id = "positionId" name = "positionId"/>
+            <label for="teamName">Team Id</label>
+            <input type="text" id = "teamName" name = "teamName"/>
+            <label for="positionName">Position Name</label>
+            <input type="text" id = "positionName" name = "positionName"/>
+            <input type="file" name="uploadingFiles"/>
             <button class="button" type="submit">Create</button>
             <button class="button cancel" type="button" onclick="location.href='/'">Cancel</button>
         </form>

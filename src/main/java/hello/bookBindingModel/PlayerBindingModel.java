@@ -8,6 +8,7 @@ public class PlayerBindingModel {
     private String name;
     private int team_Id;
     private int position_Id;
+    private String image;
     @javax.persistence.Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     public int getId() {
@@ -40,5 +41,13 @@ public class PlayerBindingModel {
 
     public void setPositionId(int positionId) {
         this.position_Id = positionId;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }

@@ -8,15 +8,20 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import hello.repository.*;
 
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
 @Controller
 public class PlayerController {
+    private static String UPLOADED_FOLDER = "E:\\Downloads\\mar\\src\\main\\resources\\static\\";
     private final PlayerRepository playerRepository;
     private final PositionRepository positionRepository;
     private final TeamRepository teamRepository;
@@ -63,12 +68,24 @@ public class PlayerController {
     }
 
     @PostMapping("/createPlayer")
-    public String create(Player player) {
+    public String create(Player player, @RequestParam("uploadingFiles") MultipartFile uploadingFiles, @RequestParam("teamName") String teamName,@RequestParam("positionName") String positionName ) throws IOException {
         Player p = new Player();
         p.setId(player.getId());
         p.setName(player.getName());
-        p.setPositionId(player.getPositionId());
-        p.setTeamId(player.getTeamId());
+        for(int i = 0; i < this.teamRepository.findAll().size(); i++){
+            if(teamName.equals(this.teamRepository.findAll().get(i).getName())){
+                p.setTeamId(this.teamRepository.findAll().get(i).getId());
+            }
+        }
+        for(int i = 0; i < this.positionRepository.findAll().size(); i++){
+            if(positionName.equals(this.positionRepository.findAll().get(i).getName())){
+                p.setPositionId(this.positionRepository.findAll().get(i).getId());
+            }
+        }
+            byte[] bytes = uploadingFiles.getBytes();
+            Path path = Paths.get(UPLOADED_FOLDER + uploadingFiles.getOriginalFilename());
+            Files.write(path, bytes);
+            p.setImage(uploadingFiles.getOriginalFilename());
         this.playerRepository.save(p);
         return "redirect:/";
     }

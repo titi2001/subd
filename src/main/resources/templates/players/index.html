@@ -11,6 +11,7 @@
     <div class="container" th:each="player : ${players}">
         <div class="row">
             <a th:href="${'/viewPlayer/' + player.id}"><div class="col-md-auto">
+                <img th:src = "${player.image}"width="100px" height="200px">
                 <p th:text="${player.name}"></p>
                 <p>Team: </p>
                 <div th:each="team : ${teams}">

@@ -7,6 +7,7 @@ import javax.persistence.*;
 public class Player {
     private int Id;
     private String name;
+    private String image;
     private int team_Id;
     private int position_Id;
     @Id
@@ -41,5 +42,13 @@ public class Player {
 
     public void setPositionId(int positionId) {
         this.position_Id = positionId;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }
