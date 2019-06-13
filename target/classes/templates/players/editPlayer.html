@@ -4,10 +4,10 @@
         <form th:action="@{/editPlayer/{id}(id=${player.id})}" method="POST">
             <label for="name">Name</label>
             <input type="text" id="name" name="name" required/>
-            <label for="teamId">Team Name</label>
-            <input type="text" id = "teamId" name = "teamId"/>
-            <label for="positionId">Position Name</label>
-            <input type="text" id = "positionId" name = "positionId"/>
+            <label for="teamName">Team Name</label>
+            <input type="text" id = "teamName" name = "teamName"/>
+            <label for="positionName">Position Name</label>
+            <input type="text" id = "positionName" name = "positionName"/>
             <button class="button" type="submit">Edit</button>
             <button class="cancel button" type="button" onclick="location.href='/'">Cancel</button>
         </form>
